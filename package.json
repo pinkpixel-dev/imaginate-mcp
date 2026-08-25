@@ -1,0 +1,47 @@
+{
+  "name": "imaginate-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for image generation and editing with OpenAI GPT Image and Google Gemini (Nano Banana) models.",
+  "type": "module",
+  "bin": {
+    "imaginate-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', 0o755)\"",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "test": "tsc -p tsconfig.test.json && node --test \"dist-test/tests/**/*.test.js\""
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "image-generation",
+    "openai",
+    "gpt-image",
+    "gemini",
+    "nano-banana"
+  ],
+  "author": "Pink Pixel <admin@pinkpixel.dev> (https://pinkpixel.dev)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@google/genai": "^2.18.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "openai": "^7.5.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}
