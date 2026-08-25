@@ -1,6 +1,6 @@
 {
-  "name": "imaginate-mcp",
-  "version": "0.1.0",
+  "name": "@pinkpixel/imaginate-mcp",
+  "version": "1.0.0",
   "description": "MCP server for image generation and editing with OpenAI GPT Image and Google Gemini (Nano Banana) models.",
   "type": "module",
   "bin": {

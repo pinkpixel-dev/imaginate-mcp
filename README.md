@@ -2,8 +2,6 @@
 
 An MCP server that generates and edits images with OpenAI GPT Image and Google Gemini (Nano Banana). It runs over stdio, saves every image to disk, and hands back the file path so your assistant can keep working with the result.
 
-I built it because most image MCP servers return base64 blobs straight into the conversation, which eats context fast and makes the image hard to reuse. This one writes files instead. A path you get back from a generate call goes straight into an edit call.
-
 ## What you get
 
 Six tools, split by provider:
@@ -26,27 +24,22 @@ Only the tools for the keys you configure get registered. If you set `OPENAI_API
 
 GPT Image models need OpenAI API organization verification. If you have not done that, OpenAI rejects the request and the server tells you so.
 
-## Install
+## Connect
+
+Run the published package with `npx`. You do not need to clone the repository or install the package globally.
 
 ```bash
-git clone https://github.com/pinkpixel-dev/imaginate-mcp.git
-cd imaginate-mcp
-npm install
-npm run build
+npx -y @pinkpixel/imaginate-mcp
 ```
 
-The build writes `dist/index.js`, which is the file your MCP client runs.
-
-## Set it up in your MCP client
-
-Add the server to your client's config. For Claude Desktop that is `claude_desktop_config.json`. For Claude Code, use `.mcp.json` in your project or your user settings.
+Add the server to your client's config. For Claude Desktop, edit `claude_desktop_config.json`. For Claude Code, use `.mcp.json` in your project or your user settings.
 
 ```json
 {
   "mcpServers": {
     "imaginate": {
-      "command": "node",
-      "args": ["/absolute/path/to/imaginate-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@pinkpixel/imaginate-mcp"],
       "env": {
         "OPENAI_API_KEY": "sk-...",
         "GEMINI_API_KEY": "...",
@@ -57,9 +50,21 @@ Add the server to your client's config. For Claude Desktop that is `claude_deskt
 }
 ```
 
-Use an absolute path in `args`. MCP clients do not always run the server from the directory you expect.
-
 Restart the client after you edit the config. If no image tools appear, call `imaginate_setup_help`. That tool only exists when no provider key was found, and it lists the variables you still need to set.
+
+## Run from source
+
+Clone and build the repository if you want to work on the server locally:
+
+```bash
+git clone https://github.com/pinkpixel-dev/imaginate-mcp.git
+cd imaginate-mcp
+npm install
+npm run build
+node dist/index.js
+```
+
+To connect an MCP client to this build, use `"command": "node"` and set `args` to the absolute path of `dist/index.js`.
 
 ## Configuration
 
