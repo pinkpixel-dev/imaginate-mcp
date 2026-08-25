@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="Imaginate MCP logo" width="300" height="300">
+</p>
+
 # imaginate-mcp
 
 An MCP server that generates and edits images with OpenAI GPT Image and Google Gemini (Nano Banana). It runs over stdio, saves every image to disk, and hands back the file path so your assistant can keep working with the result.
