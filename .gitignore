@@ -6,3 +6,13 @@ dist-test/
 .env.local
 .DS_Store
 .probe.mjs
+
+# Agents
+.agents/
+.claude/
+.codex/
+AGENTS.md
+CLAUDE.md
+
+# Other
+DOCS/
